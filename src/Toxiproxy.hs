@@ -33,7 +33,7 @@ module Toxiproxy
     , run
     ) where
 
-import Servant.API
+import Servant.API qualified as Servant
 import Servant.Client
 import qualified Data.Proxy as Proxy
 import Data.Text (Text, pack, toLower, unpack)
@@ -254,7 +254,7 @@ toxiproxyUrl = BaseUrl Http "127.0.0.1" 8474 ""
 -- @
 -- proxies <- run getProxies
 -- @
-run :: ClientM a -> IO (Either ServantError a)
+run :: ClientM a -> IO (Either Servant.ServantError a)
 run f = do
   manager <- newManager defaultManagerSettings
   runClientM f (ClientEnv manager toxiproxyUrl)
