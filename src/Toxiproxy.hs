@@ -33,7 +33,7 @@ module Toxiproxy
     , run
     ) where
 
-import Servant.API qualified as Servant
+import qualified Servant.API as Servant
 import Servant.Client
 import qualified Data.Proxy as Proxy
 import Data.Text (Text, pack, toLower, unpack)
