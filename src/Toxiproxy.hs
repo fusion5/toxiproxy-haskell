@@ -85,7 +85,7 @@ instance ToJSON   ToxicName
 -- | The version of the Toxiproxy server. This library is fully supported by any version
 --   greater or equal to 2.1.3.
 newtype Version = Version Text
-  deriving (Show, Eq, MimeUnrender PlainText)
+  deriving (Show, Eq, MimeUnrender PlainText, Generic)
 
 instance FromJSON Version where
   parseJSON = genericParseJSON defaultOptions
