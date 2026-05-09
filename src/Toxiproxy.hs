@@ -49,7 +49,7 @@ import Control.Monad (void)
 import Data.String (IsString)
 
 type ToxiproxyAPI =
-       "version"  :> Get '[PlainText] Version
+       "version"  :> Get '[JSON] Version
   :<|> "reset"    :> Post '[] NoContent
   :<|> "proxies"  :> Get '[JSON] (Map ProxyName Proxy)
   :<|> "proxies"  :> ReqBody '[JSON] Proxy    :> Post '[JSON] Proxy
@@ -86,6 +86,12 @@ instance ToJSON   ToxicName
 --   greater or equal to 2.1.3.
 newtype Version = Version Text
   deriving (Show, Eq, MimeUnrender PlainText)
+
+instance FromJSON Version where
+  parseJSON = genericParseJSON defaultOptions
+
+instance ToJSON Version where
+  toJSON = genericToJSON defaultOptions
 
 -- | A Toxiproxy proxy. It forwards TCP connections between a listen and upstream host.
 --   Toxics can be injected into the proxy to simulate network failure.
