@@ -33,7 +33,7 @@ module Toxiproxy
     , run
     ) where
 
-import Servant.API hiding (Stream)
+import Servant.API hiding (Stream, Host)
 import Servant.Client
 import qualified Data.Proxy as Proxy
 import Data.Text (Text, pack, toLower, unpack)
