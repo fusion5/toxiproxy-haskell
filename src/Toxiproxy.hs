@@ -257,7 +257,7 @@ toxiproxyUrl = BaseUrl Http "127.0.0.1" 8474 ""
 run :: ClientM a -> IO (Either ClientError a)
 run f = do
   manager <- newManager defaultManagerSettings
-  runClientM f (ClientEnv manager toxiproxyUrl Nothing)
+  runClientM f (mkClientEnv manager toxiproxyUrl)
 
 -- | Given an enabled proxy, disable the proxy, run the given action and then re-enable
 --   the proxy.
