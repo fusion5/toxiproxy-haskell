@@ -254,7 +254,7 @@ toxiproxyUrl = BaseUrl Http "127.0.0.1" 8474 ""
 -- @
 -- proxies <- run getProxies
 -- @
-run :: ClientM a -> IO (Either Servant.ServantError a)
+run :: ClientM a -> IO (Either ClientError a)
 run f = do
   manager <- newManager defaultManagerSettings
   runClientM f (ClientEnv manager toxiproxyUrl Nothing)
