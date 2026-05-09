@@ -141,7 +141,7 @@ version = Version "git-fe6bf4f"
 proxyUrl :: BaseUrl
 proxyUrl = BaseUrl Http "127.0.0.1" 4444 ""
 
-runThroughProxy :: ClientM a -> IO (Either ServantError a)
+runThroughProxy :: ClientM a -> IO (Either ClientError a)
 runThroughProxy f = do
   manager <- newManager defaultManagerSettings
-  runClientM f (ClientEnv manager proxyUrl)
+  runClientM f (mkClientEnv manager proxyUrl)
